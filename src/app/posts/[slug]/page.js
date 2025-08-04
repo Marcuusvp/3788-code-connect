@@ -16,7 +16,10 @@ const fetchPostBySlug = async ({ slug }) => {
 const PagePost = ({ params }) => {
   const { slug } = params;
 
-  const post = null;
+  const {data: post} = useQuery({
+    queryKey: ["post", slug],
+    queryFn: () => fetchPostBySlug({slug})
+  })
 
   const postRating = null;
 
