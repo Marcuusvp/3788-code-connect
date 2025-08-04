@@ -20,7 +20,10 @@ export default function Home({ searchParams }) {
   
   const { data: posts, isLoading, isFetching } = useQuery({
     queryKey: ["posts", currentPage],
-    queryFn: () => fetchPosts({ page: currentPage })
+    queryFn: () => fetchPosts({ page: currentPage }),
+    staleTime: 15000, //Tempo da resposta em cache
+    //refetchInterval: 2000 Esse comandinho, faz a query ficar sendo repetida de acordo com o tempo que setamos aqui. (tipo um pooling)
+    //refetchOnWindowFocus: true Esse comandinho por padrão é true, o que ele faz é, cada fez que a aba é focada no navegador, ele dispara a query novamente
   })
 
   const ratingsAndCartegoriesMap = null;
