@@ -15,5 +15,7 @@ export const useFetchReplies = ({commentId, slug}) => {
         queryKey: ["replies", commentId],
         queryFn: async() => fetchReplies({ commentId, slug }),
         enabled: !!commentId && !!slug,
+        retry: 5,
+        retryDelay: 100,
     });
 }
